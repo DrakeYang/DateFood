@@ -1,13 +1,54 @@
 {% extends 'DateFood/base.html' %}
+	{% block content %}	
+	<table class="table_list" >
+		<tr>
+			<td class="king">
+				메뉴
+			</td>
+			<td>
+				종류
+			</td>
+			<td>
+				메이커
+			</td>
+			<td>
+				도시
+			</td>
+			<td>
+				도시2
+			</td>
+			<td>
+				메모
+			</td>
+			<td>
+				먹은날
+			</td>			
+		</tr>
+		    {% for post in posts %}
+		    <tr>
+		    	<td>
+		    	{{ post.menu }}
+		    	</td>
+		        <td>
+		    	{{ post.category }}
+		    	</td>
+		        <td>
+		    	{{ post.maker }}
+		    	</td>
+		        <td>
+		    	{{ post.city }}
+		    	</td>
+		        <td>
+		    	{{ post.city_detail }}
+		    	</td>
+		        <td>
+		    	{{ post.text }}
+		    	</td>
+		        <td>
+		    	{{ post.dated_date }}
+		    	</td>		        
+	        </tr>
+	    {% endfor %}
+    </table>    
 
-	{% block content %}
-	    {% for post in posts %}
-	        <div class="post">
-	            <div class="date">
-	                {{ post.dated_date }}
-	            </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.menu }} - {{post.maker}}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
 {% endblock content %}
