@@ -1,33 +1,33 @@
 {% extends 'DateFood/base.html' %}
 	{% block content %}	
-	<table class="table_list" >
+	<table class="table table-hover" >
 		<tr>
-			<td class="king">
+			<th>
 				메뉴
-			</td>
-			<td>
+			</th>
+			<th>
 				종류
-			</td>
-			<td>
+			</th>
+			<th>
 				메이커
-			</td>
-			<td>
+			</th>
+			<th>
 				도시
-			</td>
-			<td>
+			</th>
+			<th>
 				도시2
-			</td>
-			<td>
+			</th>
+			<th>
 				메모
-			</td>
-			<td>
+			</th>
+			<th>
 				먹은날
-			</td>			
+			</th>			
 		</tr>
 		    {% for post in posts %}
 		    <tr>
 		    	<td>
-		    	{{ post.menu }}
+		    	<a href="{% url 'post_detail' pk=post.pk %}">{{ post.menu }} </a>
 		    	</td>
 		        <td>
 		    	{{ post.category }}

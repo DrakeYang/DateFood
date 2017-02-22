@@ -53,22 +53,3 @@ h1, h2, h3, h4 {
 .post h1 a, .post h1 a:visited {
     color: #000000;
 }
-
-table.table_list{
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    margin : 20px 10px;
-    border: 1px;
-}
-table.table_list tr {
-    border: 1px;
-}
-table.table_list td {    
-    padding: 10px;
-    vertical-align: top;
-    border: 1px solid #ccc;
-}
-.king {
-    font-size: 26pt;
-}
