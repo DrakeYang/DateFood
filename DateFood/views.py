@@ -3,11 +3,25 @@ from .models import Post
 from django.utils import timezone
 from .forms import PostForm
 from django.shortcuts import redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def post_list(request):
-	posts = Post.objects.filter(dated_date__lte=timezone.now()).order_by('dated_date')
+	#posts = Post.objects.filter(dated_date__lte=timezone.now()).order_by('-dated_date')
+	#return render(request, 'DateFood/post_list.html', {'posts': posts})
+
+	post_list=Post.objects.filter(dated_date__lte=timezone.now()).order_by('-dated_date')
+	page = request.GET.get('page', 1)
+	paginator = Paginator(post_list, 3)
+	
+	try:
+		posts = paginator.page(page)
+	except PageNotAnInteger:
+		posts = paginator.page(1)
+	except EmptyPage:
+		posts = paginator.page(paginator.num_pages)
 	return render(request, 'DateFood/post_list.html', {'posts': posts})
+
 	
 def post_detail(request, pk):
 		post = get_object_or_404(Post, pk=pk)
@@ -18,7 +32,7 @@ def post_new(request):
 		form = PostForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit=False)
-			post.author = request.user
+			post.user = request.user
 			post.published_date = timezone.now()
 			post.save()
 			return redirect('post_detail', pk=post.pk)
@@ -32,7 +46,7 @@ def post_edit(request, pk):
 		form = PostForm(request.POST, instance=post)
 		if form.is_valid():
 			post = form.save(commit=False)
-			post.author = request.user
+			post.user = request.user
 			post.published_date = timezone.now()
 			post.save()
 			return redirect('post_detail', pk=post.pk)

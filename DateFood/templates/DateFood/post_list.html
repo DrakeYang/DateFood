@@ -1,29 +1,32 @@
 {% extends 'DateFood/base.html' %}
 	{% block content %}	
 	<table class="table table-hover" >
-		<tr>
-			<th>
-				메뉴
-			</th>
-			<th>
-				종류
-			</th>
-			<th>
-				메이커
-			</th>
-			<th>
-				도시
-			</th>
-			<th>
-				도시2
-			</th>
-			<th>
-				메모
-			</th>
-			<th>
-				먹은날
-			</th>			
-		</tr>
+		<thead>
+			<tr>
+				<th>
+					메뉴
+				</th>
+				<th>
+					종류
+				</th>
+				<th>
+					메이커
+				</th>
+				<th>
+					도시
+				</th>
+				<th>
+					도시2
+				</th>
+				<th>
+					메모
+				</th>
+				<th>
+					먹은날
+				</th>			
+			</tr>
+		</thead>
+		<tbody>	 
 		    {% for post in posts %}
 		    <tr>
 		    	<td>
@@ -49,6 +52,27 @@
 		    	</td>		        
 	        </tr>
 	    {% endfor %}
+	    </tbody>
     </table>    
-
+	{% if posts.has_other_pages %}
+	  <ul class="pagination">
+	    {% if posts.has_previous %}
+	      <li><a href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+	    {% else %}
+	      <li class="disabled"><span>&laquo;</span></li>
+	    {% endif %}
+	    {% for i in posts.paginator.page_range %}
+	      {% if posts.number == i %}
+	        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+	      {% else %}
+	        <li><a href="?page={{ i }}">{{ i }}</a></li>
+	      {% endif %}
+	    {% endfor %}
+	    {% if posts.has_next %}
+	      <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+	    {% else %}
+	      <li class="disabled"><span>&raquo;</span></li>
+	    {% endif %}
+	  </ul>
+	{% endif %}
 {% endblock content %}

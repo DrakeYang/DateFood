@@ -2,13 +2,40 @@
 
 {% block content %}
     <div class="post">
-        {% if post.published_date %}
+        {% if post.created_date %}
             <div class="date">
-                {{ post.dated_date }}
+                {{ post.created_date }}
             </div>
         {% endif %}
-        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">edit <span class="glyphicon glyphicon-pencil"></span></a>
+        <table class="table table-hover" >
+        <tr>
+            <th>메뉴</th>
+            <td>{{post.menu}}</td>
+        </tr>
+        <tr>
+            <th>종류</th>
+            <td>{{post.category}}</td>
+        </tr> 
+        <tr>   
+            <th>메이커</th>
+            <td>{{post.maker}}</td>
+        </tr> 
+        <tr> 
+            <th>도시</th>
+            <td>{{post.city}}</td>
+        </tr> 
+        <tr> 
+            <th>도시2</th>
+            <td>{{post.city_detail}}</td>
+        </tr> 
+        <tr> 
+            <th>메모</th>
+            <td>{{post.text}}</td>
+        </tr> 
+        <tr> 
+            <th>먹은날</th> 
+            <td>{{post.dated_date}}</td>  
+        </tr>
     </div>
 {% endblock %}
