@@ -25,7 +25,7 @@ SECRET_KEY = '-57h6%lp%llmm%=q+$+ld)5e04or5cne%fgo80-hz*^y8&v5%t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','https://github.com/DrakeYang/DateFood']
+ALLOWED_HOSTS = ['127.0.0.1','www.pythonanywhere.com']
 
 
 # Application definition
